@@ -1,0 +1,24 @@
+{
+  "name": "checkout-rails-app",
+  "version": "1.0.1",
+  "license": "UNLICENSED",
+  "scripts": {
+    "shopify": "shopify",
+    "build": "shopify app build",
+    "dev": "shopify app dev",
+    "push": "shopify app push",
+    "generate": "shopify app generate",
+    "deploy": "shopify app deploy",
+    "info": "shopify app info"
+  },
+  "dependencies": {
+    "@shopify/app": "3.44.1",
+    "@shopify/cli": "3.44.1",
+    "@shopify/post-purchase-ui-extensions-react": "^0.13.4",
+    "react": "^17.0.2"
+  },
+  "author": "petersuh",
+  "devDependencies": {
+    "tailwindcss": "^3.2.7"
+  }
+}

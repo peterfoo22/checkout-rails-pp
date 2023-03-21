@@ -1,0 +1,983 @@
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateShops (20220609125627)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "shops" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "shopify_domain" varchar NOT NULL, "shopify_token" varchar NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_shops_on_shopify_domain" ON "shops" ("shopify_domain")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20220609125627"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddShopAccessScopesColumn (20220609125631)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "shops" ADD "access_scopes" varchar[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20220609125631"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2023-03-15 16:13:16.550669"], ["updated_at", "2023-03-15 16:13:16.550669"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/?shop=peterfoo22.myshopify.com&host=cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu" for 193.118.225.242 at 2023-03-15 17:13:54 +0100
+Cannot render console from 193.118.225.242! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#index as HTML
+  Parameters: {"shop"=>"peterfoo22.myshopify.com", "host"=>"cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu"}
+  [1m[36mShop Load (0.2ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+Redirected to https://cd6dd18d8fbc.ngrok.app/api/auth?shop=peterfoo22.myshopify.com&host=cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu&return_to=%2F%3Fshop%3Dpeterfoo22.myshopify.com%26host%3DcGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu
+Filter chain halted as :check_shop_known rendered or redirected
+Completed 302 Found in 29ms (ActiveRecord: 0.3ms | Allocations: 67881)
+
+
+Started GET "/api/auth?shop=peterfoo22.myshopify.com&host=cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu&return_to=%2F%3Fshop%3Dpeterfoo22.myshopify.com%26host%3DcGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu" for 193.118.225.242 at 2023-03-15 17:13:55 +0100
+Cannot render console from 193.118.225.242! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ShopifyApp::SessionsController#new as HTML
+  Parameters: {"shop"=>"peterfoo22.myshopify.com", "host"=>"cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu", "return_to"=>"/?shop=peterfoo22.myshopify.com&host=cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu"}
+  [1m[36mShop Load (0.1ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+Redirected to https://peterfoo22.myshopify.com/admin/oauth/authorize?client_id=5476b80e1eb663519354d7df814aa5a2&scope=read_analytics%2Cwrite_assigned_fulfillment_orders%2Cread_customer_events%2Cwrite_custom_pixels%2Cwrite_customers%2Cwrite_discounts%2Cwrite_discovery%2Cwrite_draft_orders%2Cwrite_files%2Cwrite_fulfillments%2Cread_gdpr_data_request%2Cwrite_gift_cards%2Cwrite_inventory%2Cwrite_legal_policies%2Cwrite_locations%2Cwrite_marketing_events%2Cwrite_merchant_managed_fulfillment_orders%2Cread_online_store_navigation%2Cwrite_online_store_pages%2Cwrite_order_edits%2Cwrite_orders%2Cwrite_packing_slip_templates%2Cwrite_payment_customizations%2Cwrite_payment_terms%2Cwrite_pixels%2Cwrite_price_rules%2Cwrite_product_feeds%2Cwrite_product_listings%2Cwrite_products%2Cwrite_publications%2Cwrite_purchase_options%2Cwrite_reports%2Cwrite_resource_feedbacks%2Cwrite_returns%2Cwrite_channels%2Cwrite_script_tags%2Cwrite_shipping%2Cwrite_locales%2Cwrite_shopify_credit%2Cwrite_markets%2Cread_shopify_payments_accounts%2Cread_shopify_payments_bank_accounts%2Cread_shopify_payments_disputes%2Cread_shopify_payments_payouts%2Cwrite_content%2Cwrite_themes%2Cwrite_third_party_fulfillment_orders%2Cwrite_translations%2Cwrite_custom_fulfillment_services%2Cwrite_customer_merge%2Cwrite_delivery_customizations%2Cwrite_gates&redirect_uri=https%3A%2F%2Fcd6dd18d8fbc.ngrok.app%2Fapi%2Fauth%2Fcallback&state=htSKZoPI3huuBmM&grant_options%5B%5D=
+Completed 302 Found in 9ms (ActiveRecord: 0.1ms | Allocations: 6128)
+
+
+Started GET "/api/auth/callback?code=98c2a6931c0ff4892b32ca85e9e34dd0&hmac=3a279b83ae3193e4be69dc7335e657b114257e7bf8fca290daaf499b8afae670&host=YWRtaW4uc2hvcGlmeS5jb20vc3RvcmUvcGV0ZXJmb28yMg&shop=peterfoo22.myshopify.com&state=htSKZoPI3huuBmM&timestamp=1678896835" for 193.118.225.242 at 2023-03-15 17:13:56 +0100
+Cannot render console from 193.118.225.242! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ShopifyApp::CallbackController#callback as HTML
+  Parameters: {"code"=>"98c2a6931c0ff4892b32ca85e9e34dd0", "hmac"=>"3a279b83ae3193e4be69dc7335e657b114257e7bf8fca290daaf499b8afae670", "host"=>"YWRtaW4uc2hvcGlmeS5jb20vc3RvcmUvcGV0ZXJmb28yMg", "shop"=>"peterfoo22.myshopify.com", "state"=>"htSKZoPI3huuBmM", "timestamp"=>"1678896835"}
+  [1m[36mShop Load (0.3ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mShop Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "shops" WHERE LOWER("shops"."shopify_domain") = LOWER(?) LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  [1m[36mShop Create (0.3ms)[0m  [1m[32mINSERT INTO "shops" ("shopify_domain", "shopify_token", "created_at", "updated_at", "access_scopes") VALUES (?, ?, ?, ?, ?)[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["shopify_token", "[FILTERED]"], ["created_at", "2023-03-15 16:13:57.058324"], ["updated_at", "2023-03-15 16:13:57.058324"], ["access_scopes", "read_analytics,write_assigned_fulfillment_orders,read_customer_events,write_custom_pixels,write_customers,write_discounts,write_discovery,write_draft_orders,write_files,write_fulfillments,read_gdpr_data_request,write_gift_cards,write_inventory,write_legal_policies,write_locations,write_marketing_events,write_merchant_managed_fulfillment_orders,read_online_store_navigation,write_online_store_pages,write_order_edits,write_orders,write_packing_slip_templates,write_payment_customizations,write_payment_terms,write_pixels,write_price_rules,write_product_feeds,write_product_listings,write_products,write_publications,write_purchase_options,write_reports,write_resource_feedbacks,write_returns,write_channels,write_script_tags,write_shipping,write_locales,write_shopify_credit,write_markets,read_shopify_payments_accounts,read_shopify_payments_bank_accounts,read_shopify_payments_disputes,read_shopify_payments_payouts,write_content,write_themes,write_third_party_fulfillment_orders,write_translations,write_custom_fulfillment_services,write_customer_merge,write_delivery_customizations,write_gates"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mcommit transaction[0m
+[ActiveJob] Enqueued ShopifyApp::WebhooksManagerJob (Job ID: ce3150d3-b08b-40a5-bcee-2eba579c562c) to Async(default)
+Redirected to https://admin.shopify.com/store/peterfoo22/apps/5476b80e1eb663519354d7df814aa5a2/?shop=peterfoo22.myshopify.com&host=cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu
+Completed 302 Found in 563ms (ActiveRecord: 1.2ms | Allocations: 19101)
+
+
+[ActiveJob] [ShopifyApp::WebhooksManagerJob] [ce3150d3-b08b-40a5-bcee-2eba579c562c] Performing ShopifyApp::WebhooksManagerJob (Job ID: ce3150d3-b08b-40a5-bcee-2eba579c562c) from Async(default) enqueued at 2023-03-15T16:13:57Z
+Started GET "/?embedded=1&hmac=ee551f8aa40d844c728c9cab9f2e1792bccc659ff5b66f03cef33f16eb08d91e&host=YWRtaW4uc2hvcGlmeS5jb20vc3RvcmUvcGV0ZXJmb28yMg&locale=en-US&session=420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58&shop=peterfoo22.myshopify.com&timestamp=1678896839" for 193.118.225.242 at 2023-03-15 17:14:00 +0100
+Cannot render console from 193.118.225.242! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  Parameters: {"embedded"=>"1", "hmac"=>"ee551f8aa40d844c728c9cab9f2e1792bccc659ff5b66f03cef33f16eb08d91e", "host"=>"YWRtaW4uc2hvcGlmeS5jb20vc3RvcmUvcGV0ZXJmb28yMg", "locale"=>"en-US", "session"=>"420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58", "shop"=>"peterfoo22.myshopify.com", "timestamp"=>"1678896839"}
+  [1m[36mShop Load (0.3ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  [1m[36mCACHE Shop Load (0.0ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 13)
+Completed 200 OK in 13ms (Views: 7.0ms | ActiveRecord: 0.3ms | Allocations: 5848)
+
+
+[ActiveJob] [ShopifyApp::WebhooksManagerJob] [ce3150d3-b08b-40a5-bcee-2eba579c562c] Performed ShopifyApp::WebhooksManagerJob (Job ID: ce3150d3-b08b-40a5-bcee-2eba579c562c) from Async(default) in 4304.86ms
+Started GET "/api/products/count" for 193.118.225.242 at 2023-03-15 17:14:08 +0100
+Cannot render console from 193.118.225.242! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ProductsController#count as */*
+  [1m[36mShop Load (0.1ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+Completed 200 OK in 820ms (Views: 0.6ms | ActiveRecord: 0.1ms | Allocations: 13537)
+
+
+[ ShopifyApp | INFO | Shop Not Found ] Installed store  - peterfoo22.myshopify.com deduced from user session
+Started GET "/?shop=peterfoo22.myshopify.com&host=cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu" for 193.118.225.242 at 2023-03-15 17:18:45 +0100
+Cannot render console from 193.118.225.242! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#index as HTML
+  Parameters: {"shop"=>"peterfoo22.myshopify.com", "host"=>"cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu"}
+  [1m[36mShop Load (0.2ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  [1m[36mCACHE Shop Load (0.1ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+Redirected to https://peterfoo22.myshopify.com/admin/apps/5476b80e1eb663519354d7df814aa5a2
+Completed 302 Found in 1247ms (ActiveRecord: 0.5ms | Allocations: 83273)
+
+
+Started GET "/?embedded=1&hmac=5f55b001035cb2d2ba863f200de3f42d1545ae43d836b4a22b7d1a433db74467&host=cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu&locale=en-US&session=420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58&shop=peterfoo22.myshopify.com&timestamp=1678897128" for 193.118.225.242 at 2023-03-15 17:18:49 +0100
+Cannot render console from 193.118.225.242! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  Parameters: {"embedded"=>"1", "hmac"=>"5f55b001035cb2d2ba863f200de3f42d1545ae43d836b4a22b7d1a433db74467", "host"=>"cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu", "locale"=>"en-US", "session"=>"420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58", "shop"=>"peterfoo22.myshopify.com", "timestamp"=>"1678897128"}
+  [1m[36mShop Load (0.1ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  [1m[36mCACHE Shop Load (0.0ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 13)
+Completed 200 OK in 7ms (Views: 3.1ms | ActiveRecord: 0.1ms | Allocations: 4979)
+
+
+Started GET "/?shop=peterfoo22.myshopify.com&host=cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu" for 185.198.240.17 at 2023-03-17 11:27:00 +0100
+Cannot render console from 185.198.240.17! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#index as HTML
+  Parameters: {"shop"=>"peterfoo22.myshopify.com", "host"=>"cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu"}
+  [1m[36mShop Load (0.2ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  [1m[36mCACHE Shop Load (0.0ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+Redirected to https://peterfoo22.myshopify.com/admin/apps/5476b80e1eb663519354d7df814aa5a2
+Completed 302 Found in 1518ms (ActiveRecord: 0.5ms | Allocations: 83273)
+
+
+Started GET "/?embedded=1&hmac=e9628c8bdd4596d645aaee519c0fb4c6c1fcda78e91dcd31818cba34a3a07ce3&host=cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu&locale=en-US&session=420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58&shop=peterfoo22.myshopify.com&timestamp=1679048838" for 185.198.240.17 at 2023-03-17 11:27:23 +0100
+Cannot render console from 185.198.240.17! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  Parameters: {"embedded"=>"1", "hmac"=>"e9628c8bdd4596d645aaee519c0fb4c6c1fcda78e91dcd31818cba34a3a07ce3", "host"=>"cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu", "locale"=>"en-US", "session"=>"420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58", "shop"=>"peterfoo22.myshopify.com", "timestamp"=>"1679048838"}
+  [1m[36mShop Load (0.3ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  [1m[36mCACHE Shop Load (0.0ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 13)
+Completed 200 OK in 18ms (Views: 12.2ms | ActiveRecord: 0.3ms | Allocations: 7694)
+
+
+Started GET "/api/products/count" for 185.198.240.17 at 2023-03-17 11:27:40 +0100
+Cannot render console from 185.198.240.17! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ProductsController#count as */*
+  [1m[36mShop Load (0.1ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+Completed 200 OK in 1013ms (Views: 0.8ms | ActiveRecord: 0.1ms | Allocations: 12449)
+
+
+[ ShopifyApp | INFO | Shop Not Found ] Installed store  - peterfoo22.myshopify.com deduced from user session
+Started POST "/api/webhooks" for 127.0.0.1 at 2023-03-17 11:35:13 +0100
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#index as */*
+  Parameters: {"id"=>548380009, "name"=>"Super Toys", "email"=>"super@supertoys.com", "domain"=>nil, "province"=>"Tennessee", "country"=>"US", "address1"=>"190 MacLaren Street", "zip"=>"37178", "city"=>"Houston", "source"=>nil, "phone"=>"3213213210", "latitude"=>nil, "longitude"=>nil, "primary_locale"=>"en", "address2"=>nil, "created_at"=>nil, "updated_at"=>nil, "country_code"=>"US", "country_name"=>"United States", "currency"=>"USD", "customer_email"=>"super@supertoys.com", "timezone"=>"(GMT-05:00) Eastern Time (US & Canada)", "iana_timezone"=>nil, "shop_owner"=>"John Smith", "money_format"=>"${{amount}}", "money_with_currency_format"=>"${{amount}} USD", "weight_unit"=>"kg", "province_code"=>"TN", "taxes_included"=>nil, "auto_configure_tax_inclusivity"=>nil, "tax_shipping"=>nil, "county_taxes"=>nil, "plan_display_name"=>"Shopify Plus", "plan_name"=>"enterprise", "has_discounts"=>false, "has_gift_cards"=>true, "myshopify_domain"=>nil, "google_apps_domain"=>nil, "google_apps_login_enabled"=>nil, "money_in_emails_format"=>"${{amount}}", "money_with_currency_in_emails_format"=>"${{amount}} USD", "eligible_for_payments"=>true, "requires_extra_payments_agreement"=>false, "password_enabled"=>"[FILTERED]", "has_storefront"=>true, "finances"=>true, "primary_location_id"=>655441491, "cookie_consent_level"=>"implicit", "visitor_tracking_consent_preference"=>"allow_all", "checkout_api_supported"=>true, "multi_location_enabled"=>true, "setup_required"=>false, "pre_launch_enabled"=>false, "enabled_presentment_currencies"=>["USD"], "transactional_sms_disabled"=>false, "marketing_sms_consent_enabled_at_checkout"=>false, "path"=>"api/webhooks", "home"=>{"id"=>548380009, "name"=>"Super Toys", "email"=>"super@supertoys.com", "domain"=>nil, "province"=>"Tennessee", "country"=>"US", "address1"=>"190 MacLaren Street", "zip"=>"37178", "city"=>"Houston", "source"=>nil, "phone"=>"3213213210", "latitude"=>nil, "longitude"=>nil, "primary_locale"=>"en", "address2"=>nil, "created_at"=>nil, "updated_at"=>nil, "country_code"=>"US", "country_name"=>"United States", "currency"=>"USD", "customer_email"=>"super@supertoys.com", "timezone"=>"(GMT-05:00) Eastern Time (US & Canada)", "iana_timezone"=>nil, "shop_owner"=>"John Smith", "money_format"=>"${{amount}}", "money_with_currency_format"=>"${{amount}} USD", "weight_unit"=>"kg", "province_code"=>"TN", "taxes_included"=>nil, "auto_configure_tax_inclusivity"=>nil, "tax_shipping"=>nil, "county_taxes"=>nil, "plan_display_name"=>"Shopify Plus", "plan_name"=>"enterprise", "has_discounts"=>false, "has_gift_cards"=>true, "myshopify_domain"=>nil, "google_apps_domain"=>nil, "google_apps_login_enabled"=>nil, "money_in_emails_format"=>"${{amount}}", "money_with_currency_in_emails_format"=>"${{amount}} USD", "eligible_for_payments"=>true, "requires_extra_payments_agreement"=>false, "password_enabled"=>"[FILTERED]", "has_storefront"=>true, "finances"=>true, "primary_location_id"=>655441491, "cookie_consent_level"=>"implicit", "visitor_tracking_consent_preference"=>"allow_all", "checkout_api_supported"=>true, "multi_location_enabled"=>true, "setup_required"=>false, "pre_launch_enabled"=>false, "enabled_presentment_currencies"=>["USD"], "transactional_sms_disabled"=>false, "marketing_sms_consent_enabled_at_checkout"=>false}}
+Can't verify CSRF token authenticity.
+Completed 422 Unprocessable Entity in 0ms (ActiveRecord: 0.0ms | Allocations: 643)
+
+
+  
+ActionController::InvalidAuthenticityToken (Can't verify CSRF token authenticity.):
+  
+actionpack (7.0.4.3) lib/action_controller/metal/request_forgery_protection.rb:251:in `handle_unverified_request'
+actionpack (7.0.4.3) lib/action_controller/metal/request_forgery_protection.rb:284:in `handle_unverified_request'
+actionpack (7.0.4.3) lib/action_controller/metal/request_forgery_protection.rb:273:in `verify_authenticity_token'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:400:in `block in make_lambda'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:199:in `block (2 levels) in halting'
+actionpack (7.0.4.3) lib/abstract_controller/callbacks.rb:34:in `block (2 levels) in <module:Callbacks>'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:200:in `block in halting'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:595:in `block in invoke_before'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:595:in `each'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:595:in `invoke_before'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:116:in `block in run_callbacks'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:138:in `run_callbacks'
+actionpack (7.0.4.3) lib/abstract_controller/callbacks.rb:233:in `process_action'
+actionpack (7.0.4.3) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (7.0.4.3) lib/action_controller/metal/instrumentation.rb:67:in `block in process_action'
+activesupport (7.0.4.3) lib/active_support/notifications.rb:206:in `block in instrument'
+activesupport (7.0.4.3) lib/active_support/notifications/instrumenter.rb:24:in `instrument'
+activesupport (7.0.4.3) lib/active_support/notifications.rb:206:in `instrument'
+actionpack (7.0.4.3) lib/action_controller/metal/instrumentation.rb:66:in `process_action'
+actionpack (7.0.4.3) lib/action_controller/metal/params_wrapper.rb:259:in `process_action'
+activerecord (7.0.4.3) lib/active_record/railties/controller_runtime.rb:27:in `process_action'
+actionpack (7.0.4.3) lib/abstract_controller/base.rb:151:in `process'
+actionview (7.0.4.3) lib/action_view/rendering.rb:39:in `process'
+actionpack (7.0.4.3) lib/action_controller/metal.rb:188:in `dispatch'
+actionpack (7.0.4.3) lib/action_controller/metal.rb:251:in `dispatch'
+actionpack (7.0.4.3) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (7.0.4.3) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (7.0.4.3) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (7.0.4.3) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (7.0.4.3) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (7.0.4.3) lib/action_dispatch/routing/route_set.rb:852:in `call'
+rack (2.2.6.4) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.2.6.4) lib/rack/etag.rb:27:in `call'
+rack (2.2.6.4) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.6.4) lib/rack/head.rb:12:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/http/content_security_policy.rb:36:in `call'
+rack (2.2.6.4) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.6.4) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.0.4.3) lib/active_record/migration.rb:603:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+web-console (4.2.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.4.3) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.4.3) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.4.3) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.4.3) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.4.3) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.4.3) lib/rails/rack/logger.rb:25:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.6.4) lib/rack/method_override.rb:24:in `call'
+shopify_app (21.4.1) lib/shopify_app/middleware/jwt_middleware.rb:24:in `call_next'
+shopify_app (21.4.1) lib/shopify_app/middleware/jwt_middleware.rb:12:in `call'
+rack (2.2.6.4) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.4.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.6.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+railties (7.0.4.3) lib/rails/engine.rb:530:in `call'
+puma (5.6.5) lib/puma/configuration.rb:252:in `call'
+puma (5.6.5) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.5) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.5) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.5) lib/puma/server.rb:443:in `process_client'
+puma (5.6.5) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/?shop=peterfoo22.myshopify.com&host=cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu" for 193.118.225.34 at 2023-03-17 15:34:53 +0100
+Cannot render console from 193.118.225.34! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#index as HTML
+  Parameters: {"shop"=>"peterfoo22.myshopify.com", "host"=>"cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu"}
+  [1m[36mShop Load (3.3ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  [1m[36mCACHE Shop Load (0.1ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+Redirected to https://peterfoo22.myshopify.com/admin/apps/5e159cbd931b1399714c9849435e419d
+Completed 302 Found in 1256ms (ActiveRecord: 6.5ms | Allocations: 83287)
+
+
+Started POST "/api/webhooks" for 127.0.0.1 at 2023-03-17 15:35:54 +0100
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#index as */*
+  Parameters: {"id"=>548380009, "name"=>"Super Toys", "email"=>"super@supertoys.com", "domain"=>nil, "province"=>"Tennessee", "country"=>"US", "address1"=>"190 MacLaren Street", "zip"=>"37178", "city"=>"Houston", "source"=>nil, "phone"=>"3213213210", "latitude"=>nil, "longitude"=>nil, "primary_locale"=>"en", "address2"=>nil, "created_at"=>nil, "updated_at"=>nil, "country_code"=>"US", "country_name"=>"United States", "currency"=>"USD", "customer_email"=>"super@supertoys.com", "timezone"=>"(GMT-05:00) Eastern Time (US & Canada)", "iana_timezone"=>nil, "shop_owner"=>"John Smith", "money_format"=>"${{amount}}", "money_with_currency_format"=>"${{amount}} USD", "weight_unit"=>"kg", "province_code"=>"TN", "taxes_included"=>nil, "auto_configure_tax_inclusivity"=>nil, "tax_shipping"=>nil, "county_taxes"=>nil, "plan_display_name"=>"Shopify Plus", "plan_name"=>"enterprise", "has_discounts"=>false, "has_gift_cards"=>true, "myshopify_domain"=>nil, "google_apps_domain"=>nil, "google_apps_login_enabled"=>nil, "money_in_emails_format"=>"${{amount}}", "money_with_currency_in_emails_format"=>"${{amount}} USD", "eligible_for_payments"=>true, "requires_extra_payments_agreement"=>false, "password_enabled"=>"[FILTERED]", "has_storefront"=>true, "finances"=>true, "primary_location_id"=>655441491, "cookie_consent_level"=>"implicit", "visitor_tracking_consent_preference"=>"allow_all", "checkout_api_supported"=>true, "multi_location_enabled"=>true, "setup_required"=>false, "pre_launch_enabled"=>false, "enabled_presentment_currencies"=>["USD"], "transactional_sms_disabled"=>false, "marketing_sms_consent_enabled_at_checkout"=>false, "path"=>"api/webhooks", "home"=>{"id"=>548380009, "name"=>"Super Toys", "email"=>"super@supertoys.com", "domain"=>nil, "province"=>"Tennessee", "country"=>"US", "address1"=>"190 MacLaren Street", "zip"=>"37178", "city"=>"Houston", "source"=>nil, "phone"=>"3213213210", "latitude"=>nil, "longitude"=>nil, "primary_locale"=>"en", "address2"=>nil, "created_at"=>nil, "updated_at"=>nil, "country_code"=>"US", "country_name"=>"United States", "currency"=>"USD", "customer_email"=>"super@supertoys.com", "timezone"=>"(GMT-05:00) Eastern Time (US & Canada)", "iana_timezone"=>nil, "shop_owner"=>"John Smith", "money_format"=>"${{amount}}", "money_with_currency_format"=>"${{amount}} USD", "weight_unit"=>"kg", "province_code"=>"TN", "taxes_included"=>nil, "auto_configure_tax_inclusivity"=>nil, "tax_shipping"=>nil, "county_taxes"=>nil, "plan_display_name"=>"Shopify Plus", "plan_name"=>"enterprise", "has_discounts"=>false, "has_gift_cards"=>true, "myshopify_domain"=>nil, "google_apps_domain"=>nil, "google_apps_login_enabled"=>nil, "money_in_emails_format"=>"${{amount}}", "money_with_currency_in_emails_format"=>"${{amount}} USD", "eligible_for_payments"=>true, "requires_extra_payments_agreement"=>false, "password_enabled"=>"[FILTERED]", "has_storefront"=>true, "finances"=>true, "primary_location_id"=>655441491, "cookie_consent_level"=>"implicit", "visitor_tracking_consent_preference"=>"allow_all", "checkout_api_supported"=>true, "multi_location_enabled"=>true, "setup_required"=>false, "pre_launch_enabled"=>false, "enabled_presentment_currencies"=>["USD"], "transactional_sms_disabled"=>false, "marketing_sms_consent_enabled_at_checkout"=>false}}
+Can't verify CSRF token authenticity.
+Completed 422 Unprocessable Entity in 0ms (ActiveRecord: 0.0ms | Allocations: 643)
+
+
+  
+ActionController::InvalidAuthenticityToken (Can't verify CSRF token authenticity.):
+  
+actionpack (7.0.4.3) lib/action_controller/metal/request_forgery_protection.rb:251:in `handle_unverified_request'
+actionpack (7.0.4.3) lib/action_controller/metal/request_forgery_protection.rb:284:in `handle_unverified_request'
+actionpack (7.0.4.3) lib/action_controller/metal/request_forgery_protection.rb:273:in `verify_authenticity_token'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:400:in `block in make_lambda'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:199:in `block (2 levels) in halting'
+actionpack (7.0.4.3) lib/abstract_controller/callbacks.rb:34:in `block (2 levels) in <module:Callbacks>'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:200:in `block in halting'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:595:in `block in invoke_before'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:595:in `each'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:595:in `invoke_before'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:116:in `block in run_callbacks'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:138:in `run_callbacks'
+actionpack (7.0.4.3) lib/abstract_controller/callbacks.rb:233:in `process_action'
+actionpack (7.0.4.3) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (7.0.4.3) lib/action_controller/metal/instrumentation.rb:67:in `block in process_action'
+activesupport (7.0.4.3) lib/active_support/notifications.rb:206:in `block in instrument'
+activesupport (7.0.4.3) lib/active_support/notifications/instrumenter.rb:24:in `instrument'
+activesupport (7.0.4.3) lib/active_support/notifications.rb:206:in `instrument'
+actionpack (7.0.4.3) lib/action_controller/metal/instrumentation.rb:66:in `process_action'
+actionpack (7.0.4.3) lib/action_controller/metal/params_wrapper.rb:259:in `process_action'
+activerecord (7.0.4.3) lib/active_record/railties/controller_runtime.rb:27:in `process_action'
+actionpack (7.0.4.3) lib/abstract_controller/base.rb:151:in `process'
+actionview (7.0.4.3) lib/action_view/rendering.rb:39:in `process'
+actionpack (7.0.4.3) lib/action_controller/metal.rb:188:in `dispatch'
+actionpack (7.0.4.3) lib/action_controller/metal.rb:251:in `dispatch'
+actionpack (7.0.4.3) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (7.0.4.3) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (7.0.4.3) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (7.0.4.3) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (7.0.4.3) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (7.0.4.3) lib/action_dispatch/routing/route_set.rb:852:in `call'
+rack (2.2.6.4) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.2.6.4) lib/rack/etag.rb:27:in `call'
+rack (2.2.6.4) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.6.4) lib/rack/head.rb:12:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/http/content_security_policy.rb:36:in `call'
+rack (2.2.6.4) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.6.4) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.0.4.3) lib/active_record/migration.rb:603:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+web-console (4.2.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.4.3) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.4.3) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.4.3) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.4.3) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.4.3) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.4.3) lib/rails/rack/logger.rb:25:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.6.4) lib/rack/method_override.rb:24:in `call'
+shopify_app (21.4.1) lib/shopify_app/middleware/jwt_middleware.rb:24:in `call_next'
+shopify_app (21.4.1) lib/shopify_app/middleware/jwt_middleware.rb:12:in `call'
+rack (2.2.6.4) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.4.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.6.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+railties (7.0.4.3) lib/rails/engine.rb:530:in `call'
+puma (5.6.5) lib/puma/configuration.rb:252:in `call'
+puma (5.6.5) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.5) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.5) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.5) lib/puma/server.rb:443:in `process_client'
+puma (5.6.5) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/?shop=peterfoo22.myshopify.com&host=cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu" for 193.118.225.34 at 2023-03-17 15:36:01 +0100
+Cannot render console from 193.118.225.34! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  Parameters: {"shop"=>"peterfoo22.myshopify.com", "host"=>"cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu"}
+  [1m[36mShop Load (0.3ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  [1m[36mCACHE Shop Load (0.1ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+Redirected to https://peterfoo22.myshopify.com/admin/apps/5476b80e1eb663519354d7df814aa5a2
+Completed 302 Found in 638ms (ActiveRecord: 0.7ms | Allocations: 83087)
+
+
+Started GET "/?embedded=1&hmac=df312f8661d1322ec587cb5a2bd1f07f1279817e9a877328b50dc45cad435f4f&host=cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu&locale=en-US&session=420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58&shop=peterfoo22.myshopify.com&timestamp=1679063763" for 193.118.225.34 at 2023-03-17 15:36:04 +0100
+Cannot render console from 193.118.225.34! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  Parameters: {"embedded"=>"1", "hmac"=>"df312f8661d1322ec587cb5a2bd1f07f1279817e9a877328b50dc45cad435f4f", "host"=>"cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu", "locale"=>"en-US", "session"=>"420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58", "shop"=>"peterfoo22.myshopify.com", "timestamp"=>"1679063763"}
+  [1m[36mShop Load (0.2ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  [1m[36mCACHE Shop Load (0.0ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 10)
+Completed 200 OK in 10ms (Views: 3.0ms | ActiveRecord: 0.2ms | Allocations: 4641)
+
+
+Started GET "/api/products/count" for 193.118.225.34 at 2023-03-17 15:36:09 +0100
+Cannot render console from 193.118.225.34! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  
+SyntaxError (/Users/petersuh/Desktop/Training-Projects/checkout-rails-app/web/app/controllers/products_controller.rb:11: syntax error, unexpected '<', expecting ')'
+..._current_session(auth_header: <auth-header>, cookies: <cooki...
+...                              ^
+/Users/petersuh/Desktop/Training-Projects/checkout-rails-app/web/app/controllers/products_controller.rb:11: syntax error, unexpected ','
+...ion(auth_header: <auth-header>, cookies: <cookies>, is_onlin...
+...                              ^
+/Users/petersuh/Desktop/Training-Projects/checkout-rails-app/web/app/controllers/products_controller.rb:11: syntax error, unexpected ')'
+...kies>, is_online: <true|false>)
+...                              ^
+):
+  
+app/controllers/products_controller.rb:11: syntax error, unexpected '<', expecting ')'
+app/controllers/products_controller.rb:11: syntax error, unexpected ','
+app/controllers/products_controller.rb:11: syntax error, unexpected ')'
+app/controllers/products_controller.rb:11: syntax error, unexpected '<', expecting ')'
+app/controllers/products_controller.rb:11: syntax error, unexpected ','
+app/controllers/products_controller.rb:11: syntax error, unexpected ')'
+app/controllers/products_controller.rb:11: syntax error, unexpected '<', expecting ')'
+app/controllers/products_controller.rb:11: syntax error, unexpected ','
+app/controllers/products_controller.rb:11: syntax error, unexpected ')'
+Started GET "/api/products/count" for 193.118.225.34 at 2023-03-17 15:36:11 +0100
+Cannot render console from 193.118.225.34! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  
+SyntaxError (/Users/petersuh/Desktop/Training-Projects/checkout-rails-app/web/app/controllers/products_controller.rb:11: syntax error, unexpected '<', expecting ')'
+..._current_session(auth_header: <auth-header>, cookies: <cooki...
+...                              ^
+/Users/petersuh/Desktop/Training-Projects/checkout-rails-app/web/app/controllers/products_controller.rb:11: syntax error, unexpected ','
+...ion(auth_header: <auth-header>, cookies: <cookies>, is_onlin...
+...                              ^
+/Users/petersuh/Desktop/Training-Projects/checkout-rails-app/web/app/controllers/products_controller.rb:11: syntax error, unexpected ')'
+...kies>, is_online: <true|false>)
+...                              ^
+):
+  
+app/controllers/products_controller.rb:11: syntax error, unexpected '<', expecting ')'
+app/controllers/products_controller.rb:11: syntax error, unexpected ','
+app/controllers/products_controller.rb:11: syntax error, unexpected ')'
+app/controllers/products_controller.rb:11: syntax error, unexpected '<', expecting ')'
+app/controllers/products_controller.rb:11: syntax error, unexpected ','
+app/controllers/products_controller.rb:11: syntax error, unexpected ')'
+app/controllers/products_controller.rb:11: syntax error, unexpected '<', expecting ')'
+app/controllers/products_controller.rb:11: syntax error, unexpected ','
+app/controllers/products_controller.rb:11: syntax error, unexpected ')'
+Started GET "/api/products/count" for 193.118.225.34 at 2023-03-17 15:36:13 +0100
+Cannot render console from 193.118.225.34! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  
+SyntaxError (/Users/petersuh/Desktop/Training-Projects/checkout-rails-app/web/app/controllers/products_controller.rb:11: syntax error, unexpected '<', expecting ')'
+..._current_session(auth_header: <auth-header>, cookies: <cooki...
+...                              ^
+/Users/petersuh/Desktop/Training-Projects/checkout-rails-app/web/app/controllers/products_controller.rb:11: syntax error, unexpected ','
+...ion(auth_header: <auth-header>, cookies: <cookies>, is_onlin...
+...                              ^
+/Users/petersuh/Desktop/Training-Projects/checkout-rails-app/web/app/controllers/products_controller.rb:11: syntax error, unexpected ')'
+...kies>, is_online: <true|false>)
+...                              ^
+):
+  
+app/controllers/products_controller.rb:11: syntax error, unexpected '<', expecting ')'
+app/controllers/products_controller.rb:11: syntax error, unexpected ','
+app/controllers/products_controller.rb:11: syntax error, unexpected ')'
+app/controllers/products_controller.rb:11: syntax error, unexpected '<', expecting ')'
+app/controllers/products_controller.rb:11: syntax error, unexpected ','
+app/controllers/products_controller.rb:11: syntax error, unexpected ')'
+app/controllers/products_controller.rb:11: syntax error, unexpected '<', expecting ')'
+app/controllers/products_controller.rb:11: syntax error, unexpected ','
+app/controllers/products_controller.rb:11: syntax error, unexpected ')'
+Started GET "/api/products/count" for 193.118.225.34 at 2023-03-17 15:36:18 +0100
+Cannot render console from 193.118.225.34! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  
+SyntaxError (/Users/petersuh/Desktop/Training-Projects/checkout-rails-app/web/app/controllers/products_controller.rb:11: syntax error, unexpected '<', expecting ')'
+..._current_session(auth_header: <auth-header>, cookies: <cooki...
+...                              ^
+/Users/petersuh/Desktop/Training-Projects/checkout-rails-app/web/app/controllers/products_controller.rb:11: syntax error, unexpected ','
+...ion(auth_header: <auth-header>, cookies: <cookies>, is_onlin...
+...                              ^
+/Users/petersuh/Desktop/Training-Projects/checkout-rails-app/web/app/controllers/products_controller.rb:11: syntax error, unexpected ')'
+...kies>, is_online: <true|false>)
+...                              ^
+):
+  
+app/controllers/products_controller.rb:11: syntax error, unexpected '<', expecting ')'
+app/controllers/products_controller.rb:11: syntax error, unexpected ','
+app/controllers/products_controller.rb:11: syntax error, unexpected ')'
+app/controllers/products_controller.rb:11: syntax error, unexpected '<', expecting ')'
+app/controllers/products_controller.rb:11: syntax error, unexpected ','
+app/controllers/products_controller.rb:11: syntax error, unexpected ')'
+app/controllers/products_controller.rb:11: syntax error, unexpected '<', expecting ')'
+app/controllers/products_controller.rb:11: syntax error, unexpected ','
+app/controllers/products_controller.rb:11: syntax error, unexpected ')'
+Started GET "/?embedded=1&hmac=b4856a470a8321dca92bc64ce0bfe61082985e453961f7ceb2a22fe2c767504a&host=cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu&locale=en-US&session=420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58&shop=peterfoo22.myshopify.com&timestamp=1679063781" for 193.118.225.34 at 2023-03-17 15:36:22 +0100
+Cannot render console from 193.118.225.34! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  Parameters: {"embedded"=>"1", "hmac"=>"b4856a470a8321dca92bc64ce0bfe61082985e453961f7ceb2a22fe2c767504a", "host"=>"cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu", "locale"=>"en-US", "session"=>"420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58", "shop"=>"peterfoo22.myshopify.com", "timestamp"=>"1679063781"}
+  [1m[36mShop Load (0.2ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  [1m[36mCACHE Shop Load (0.0ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 7ms (Views: 0.4ms | ActiveRecord: 0.2ms | Allocations: 4277)
+
+
+Started GET "/api/products/count" for 193.118.225.34 at 2023-03-17 15:36:27 +0100
+Cannot render console from 193.118.225.34! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  
+SyntaxError (/Users/petersuh/Desktop/Training-Projects/checkout-rails-app/web/app/controllers/products_controller.rb:11: syntax error, unexpected '<', expecting ')'
+..._current_session(auth_header: <auth-header>, cookies: <cooki...
+...                              ^
+/Users/petersuh/Desktop/Training-Projects/checkout-rails-app/web/app/controllers/products_controller.rb:11: syntax error, unexpected ','
+...ion(auth_header: <auth-header>, cookies: <cookies>, is_onlin...
+...                              ^
+/Users/petersuh/Desktop/Training-Projects/checkout-rails-app/web/app/controllers/products_controller.rb:11: syntax error, unexpected ')'
+...kies>, is_online: <true|false>)
+...                              ^
+):
+  
+app/controllers/products_controller.rb:11: syntax error, unexpected '<', expecting ')'
+app/controllers/products_controller.rb:11: syntax error, unexpected ','
+app/controllers/products_controller.rb:11: syntax error, unexpected ')'
+app/controllers/products_controller.rb:11: syntax error, unexpected '<', expecting ')'
+app/controllers/products_controller.rb:11: syntax error, unexpected ','
+app/controllers/products_controller.rb:11: syntax error, unexpected ')'
+app/controllers/products_controller.rb:11: syntax error, unexpected '<', expecting ')'
+app/controllers/products_controller.rb:11: syntax error, unexpected ','
+app/controllers/products_controller.rb:11: syntax error, unexpected ')'
+Started GET "/api/products/count" for 193.118.225.34 at 2023-03-17 15:36:32 +0100
+Cannot render console from 193.118.225.34! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  
+SyntaxError (/Users/petersuh/Desktop/Training-Projects/checkout-rails-app/web/app/controllers/products_controller.rb:11: syntax error, unexpected '<', expecting ')'
+..._current_session(auth_header: <auth-header>, cookies: <cooki...
+...                              ^
+/Users/petersuh/Desktop/Training-Projects/checkout-rails-app/web/app/controllers/products_controller.rb:11: syntax error, unexpected ','
+...ion(auth_header: <auth-header>, cookies: <cookies>, is_onlin...
+...                              ^
+/Users/petersuh/Desktop/Training-Projects/checkout-rails-app/web/app/controllers/products_controller.rb:11: syntax error, unexpected ')'
+...kies>, is_online: <true|false>)
+...                              ^
+):
+  
+app/controllers/products_controller.rb:11: syntax error, unexpected '<', expecting ')'
+app/controllers/products_controller.rb:11: syntax error, unexpected ','
+app/controllers/products_controller.rb:11: syntax error, unexpected ')'
+app/controllers/products_controller.rb:11: syntax error, unexpected '<', expecting ')'
+app/controllers/products_controller.rb:11: syntax error, unexpected ','
+app/controllers/products_controller.rb:11: syntax error, unexpected ')'
+app/controllers/products_controller.rb:11: syntax error, unexpected '<', expecting ')'
+app/controllers/products_controller.rb:11: syntax error, unexpected ','
+app/controllers/products_controller.rb:11: syntax error, unexpected ')'
+Started GET "/api/products/count" for 193.118.225.34 at 2023-03-17 15:36:36 +0100
+Cannot render console from 193.118.225.34! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  
+SyntaxError (/Users/petersuh/Desktop/Training-Projects/checkout-rails-app/web/app/controllers/products_controller.rb:11: syntax error, unexpected '<', expecting ')'
+..._current_session(auth_header: <auth-header>, cookies: <cooki...
+...                              ^
+/Users/petersuh/Desktop/Training-Projects/checkout-rails-app/web/app/controllers/products_controller.rb:11: syntax error, unexpected ','
+...ion(auth_header: <auth-header>, cookies: <cookies>, is_onlin...
+...                              ^
+/Users/petersuh/Desktop/Training-Projects/checkout-rails-app/web/app/controllers/products_controller.rb:11: syntax error, unexpected ')'
+...kies>, is_online: <true|false>)
+...                              ^
+):
+  
+app/controllers/products_controller.rb:11: syntax error, unexpected '<', expecting ')'
+app/controllers/products_controller.rb:11: syntax error, unexpected ','
+app/controllers/products_controller.rb:11: syntax error, unexpected ')'
+app/controllers/products_controller.rb:11: syntax error, unexpected '<', expecting ')'
+app/controllers/products_controller.rb:11: syntax error, unexpected ','
+app/controllers/products_controller.rb:11: syntax error, unexpected ')'
+app/controllers/products_controller.rb:11: syntax error, unexpected '<', expecting ')'
+app/controllers/products_controller.rb:11: syntax error, unexpected ','
+app/controllers/products_controller.rb:11: syntax error, unexpected ')'
+Started GET "/api/products/count" for 193.118.225.34 at 2023-03-17 15:36:42 +0100
+Cannot render console from 193.118.225.34! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  
+SyntaxError (/Users/petersuh/Desktop/Training-Projects/checkout-rails-app/web/app/controllers/products_controller.rb:11: syntax error, unexpected '<', expecting ')'
+..._current_session(auth_header: <auth-header>, cookies: <cooki...
+...                              ^
+/Users/petersuh/Desktop/Training-Projects/checkout-rails-app/web/app/controllers/products_controller.rb:11: syntax error, unexpected ','
+...ion(auth_header: <auth-header>, cookies: <cookies>, is_onlin...
+...                              ^
+/Users/petersuh/Desktop/Training-Projects/checkout-rails-app/web/app/controllers/products_controller.rb:11: syntax error, unexpected ')'
+...kies>, is_online: <true|false>)
+...                              ^
+):
+  
+app/controllers/products_controller.rb:11: syntax error, unexpected '<', expecting ')'
+app/controllers/products_controller.rb:11: syntax error, unexpected ','
+app/controllers/products_controller.rb:11: syntax error, unexpected ')'
+app/controllers/products_controller.rb:11: syntax error, unexpected '<', expecting ')'
+app/controllers/products_controller.rb:11: syntax error, unexpected ','
+app/controllers/products_controller.rb:11: syntax error, unexpected ')'
+app/controllers/products_controller.rb:11: syntax error, unexpected '<', expecting ')'
+app/controllers/products_controller.rb:11: syntax error, unexpected ','
+app/controllers/products_controller.rb:11: syntax error, unexpected ')'
+Started GET "/?embedded=1&hmac=6827521e8638f2044fea994acee5de864e5ccb5d1ca3f3ec72071a60751c1e5e&host=cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu&locale=en-US&session=420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58&shop=peterfoo22.myshopify.com&timestamp=1679063858" for 193.118.225.34 at 2023-03-17 15:37:39 +0100
+Cannot render console from 193.118.225.34! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  Parameters: {"embedded"=>"1", "hmac"=>"6827521e8638f2044fea994acee5de864e5ccb5d1ca3f3ec72071a60751c1e5e", "host"=>"cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu", "locale"=>"en-US", "session"=>"420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58", "shop"=>"peterfoo22.myshopify.com", "timestamp"=>"1679063858"}
+  [1m[36mShop Load (0.4ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  [1m[36mCACHE Shop Load (0.0ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 7)
+Completed 200 OK in 8ms (Views: 0.7ms | ActiveRecord: 0.9ms | Allocations: 7672)
+
+
+Started GET "/api/products/count" for 193.118.225.34 at 2023-03-17 15:37:43 +0100
+Cannot render console from 193.118.225.34! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ProductsController#count as */*
+  [1m[36mShop Load (0.1ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+Completed 200 OK in 495ms (Views: 1.1ms | ActiveRecord: 0.1ms | Allocations: 12510)
+
+
+[ ShopifyApp | INFO | Shop Not Found ] Installed store  - peterfoo22.myshopify.com deduced from user session
+Started GET "/?embedded=1&hmac=7f66ac0409b5f81a0718192ca465d6fbfa0370237331e05daaf59e1ca0500158&host=cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu&locale=en-US&session=420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58&shop=peterfoo22.myshopify.com&timestamp=1679063950" for 193.118.225.34 at 2023-03-17 15:39:11 +0100
+Cannot render console from 193.118.225.34! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  Parameters: {"embedded"=>"1", "hmac"=>"7f66ac0409b5f81a0718192ca465d6fbfa0370237331e05daaf59e1ca0500158", "host"=>"cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu", "locale"=>"en-US", "session"=>"420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58", "shop"=>"peterfoo22.myshopify.com", "timestamp"=>"1679063950"}
+  [1m[36mShop Load (0.3ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  [1m[36mCACHE Shop Load (0.0ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 7)
+Completed 200 OK in 6ms (Views: 0.5ms | ActiveRecord: 0.6ms | Allocations: 7617)
+
+
+Started GET "/api/products/count" for 193.118.225.34 at 2023-03-17 15:39:15 +0100
+Cannot render console from 193.118.225.34! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  
+SyntaxError (/Users/petersuh/Desktop/Training-Projects/checkout-rails-app/web/app/controllers/products_controller.rb:12: syntax error, unexpected '<', expecting ')'
+..._current_session(auth_header: <auth-header>, cookies: <cooki...
+...                              ^
+/Users/petersuh/Desktop/Training-Projects/checkout-rails-app/web/app/controllers/products_controller.rb:12: syntax error, unexpected ','
+...ion(auth_header: <auth-header>, cookies: <cookies>, is_onlin...
+...                              ^
+/Users/petersuh/Desktop/Training-Projects/checkout-rails-app/web/app/controllers/products_controller.rb:12: syntax error, unexpected ')'
+...kies>, is_online: <true|false>)
+...                              ^
+):
+  
+app/controllers/products_controller.rb:12: syntax error, unexpected '<', expecting ')'
+app/controllers/products_controller.rb:12: syntax error, unexpected ','
+app/controllers/products_controller.rb:12: syntax error, unexpected ')'
+app/controllers/products_controller.rb:12: syntax error, unexpected '<', expecting ')'
+app/controllers/products_controller.rb:12: syntax error, unexpected ','
+app/controllers/products_controller.rb:12: syntax error, unexpected ')'
+app/controllers/products_controller.rb:12: syntax error, unexpected '<', expecting ')'
+app/controllers/products_controller.rb:12: syntax error, unexpected ','
+app/controllers/products_controller.rb:12: syntax error, unexpected ')'
+Started GET "/api/products/count" for 193.118.225.34 at 2023-03-17 15:39:17 +0100
+Cannot render console from 193.118.225.34! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  
+SyntaxError (/Users/petersuh/Desktop/Training-Projects/checkout-rails-app/web/app/controllers/products_controller.rb:12: syntax error, unexpected '<', expecting ')'
+..._current_session(auth_header: <auth-header>, cookies: <cooki...
+...                              ^
+/Users/petersuh/Desktop/Training-Projects/checkout-rails-app/web/app/controllers/products_controller.rb:12: syntax error, unexpected ','
+...ion(auth_header: <auth-header>, cookies: <cookies>, is_onlin...
+...                              ^
+/Users/petersuh/Desktop/Training-Projects/checkout-rails-app/web/app/controllers/products_controller.rb:12: syntax error, unexpected ')'
+...kies>, is_online: <true|false>)
+...                              ^
+):
+  
+app/controllers/products_controller.rb:12: syntax error, unexpected '<', expecting ')'
+app/controllers/products_controller.rb:12: syntax error, unexpected ','
+app/controllers/products_controller.rb:12: syntax error, unexpected ')'
+app/controllers/products_controller.rb:12: syntax error, unexpected '<', expecting ')'
+app/controllers/products_controller.rb:12: syntax error, unexpected ','
+app/controllers/products_controller.rb:12: syntax error, unexpected ')'
+app/controllers/products_controller.rb:12: syntax error, unexpected '<', expecting ')'
+app/controllers/products_controller.rb:12: syntax error, unexpected ','
+app/controllers/products_controller.rb:12: syntax error, unexpected ')'
+Started GET "/api/products/count" for 193.118.225.34 at 2023-03-17 15:39:19 +0100
+Cannot render console from 193.118.225.34! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  
+SyntaxError (/Users/petersuh/Desktop/Training-Projects/checkout-rails-app/web/app/controllers/products_controller.rb:12: syntax error, unexpected '<', expecting ')'
+..._current_session(auth_header: <auth-header>, cookies: <cooki...
+...                              ^
+/Users/petersuh/Desktop/Training-Projects/checkout-rails-app/web/app/controllers/products_controller.rb:12: syntax error, unexpected ','
+...ion(auth_header: <auth-header>, cookies: <cookies>, is_onlin...
+...                              ^
+/Users/petersuh/Desktop/Training-Projects/checkout-rails-app/web/app/controllers/products_controller.rb:12: syntax error, unexpected ')'
+...kies>, is_online: <true|false>)
+...                              ^
+):
+  
+app/controllers/products_controller.rb:12: syntax error, unexpected '<', expecting ')'
+app/controllers/products_controller.rb:12: syntax error, unexpected ','
+app/controllers/products_controller.rb:12: syntax error, unexpected ')'
+app/controllers/products_controller.rb:12: syntax error, unexpected '<', expecting ')'
+app/controllers/products_controller.rb:12: syntax error, unexpected ','
+app/controllers/products_controller.rb:12: syntax error, unexpected ')'
+app/controllers/products_controller.rb:12: syntax error, unexpected '<', expecting ')'
+app/controllers/products_controller.rb:12: syntax error, unexpected ','
+app/controllers/products_controller.rb:12: syntax error, unexpected ')'
+Started GET "/api/products/count" for 193.118.225.34 at 2023-03-17 15:39:24 +0100
+Cannot render console from 193.118.225.34! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  
+SyntaxError (/Users/petersuh/Desktop/Training-Projects/checkout-rails-app/web/app/controllers/products_controller.rb:12: syntax error, unexpected '<', expecting ')'
+..._current_session(auth_header: <auth-header>, cookies: <cooki...
+...                              ^
+/Users/petersuh/Desktop/Training-Projects/checkout-rails-app/web/app/controllers/products_controller.rb:12: syntax error, unexpected ','
+...ion(auth_header: <auth-header>, cookies: <cookies>, is_onlin...
+...                              ^
+/Users/petersuh/Desktop/Training-Projects/checkout-rails-app/web/app/controllers/products_controller.rb:12: syntax error, unexpected ')'
+...kies>, is_online: <true|false>)
+...                              ^
+):
+  
+app/controllers/products_controller.rb:12: syntax error, unexpected '<', expecting ')'
+app/controllers/products_controller.rb:12: syntax error, unexpected ','
+app/controllers/products_controller.rb:12: syntax error, unexpected ')'
+app/controllers/products_controller.rb:12: syntax error, unexpected '<', expecting ')'
+app/controllers/products_controller.rb:12: syntax error, unexpected ','
+app/controllers/products_controller.rb:12: syntax error, unexpected ')'
+app/controllers/products_controller.rb:12: syntax error, unexpected '<', expecting ')'
+app/controllers/products_controller.rb:12: syntax error, unexpected ','
+app/controllers/products_controller.rb:12: syntax error, unexpected ')'
+Started GET "/?embedded=1&hmac=1ef07129b7a00a2753a024c3d173293180c65520ca6d62ee804e90d150c903b0&host=cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu&locale=en-US&session=420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58&shop=peterfoo22.myshopify.com&timestamp=1679063986" for 193.118.225.34 at 2023-03-17 15:39:48 +0100
+Cannot render console from 193.118.225.34! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  Parameters: {"embedded"=>"1", "hmac"=>"1ef07129b7a00a2753a024c3d173293180c65520ca6d62ee804e90d150c903b0", "host"=>"cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu", "locale"=>"en-US", "session"=>"420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58", "shop"=>"peterfoo22.myshopify.com", "timestamp"=>"1679063986"}
+  [1m[36mShop Load (0.4ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  [1m[36mCACHE Shop Load (0.0ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 7)
+Completed 200 OK in 6ms (Views: 0.5ms | ActiveRecord: 0.9ms | Allocations: 7647)
+
+
+Started GET "/api/products/count" for 193.118.225.34 at 2023-03-17 15:39:52 +0100
+Cannot render console from 193.118.225.34! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ProductsController#count as */*
+  [1m[36mShop Load (0.1ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+Completed 200 OK in 762ms (Views: 0.9ms | ActiveRecord: 0.1ms | Allocations: 4012)
+
+
+[ ShopifyApp | INFO | Shop Not Found ] Installed store  - peterfoo22.myshopify.com deduced from user session
+Started GET "/?embedded=1&hmac=6e74bd3a37497b3edaade10e40c3e6b01f286b7c6e77fb01a902360062a4db33&host=cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu&locale=en-US&session=420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58&shop=peterfoo22.myshopify.com&timestamp=1679066674" for 193.118.225.34 at 2023-03-17 16:24:35 +0100
+Cannot render console from 193.118.225.34! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  Parameters: {"embedded"=>"1", "hmac"=>"6e74bd3a37497b3edaade10e40c3e6b01f286b7c6e77fb01a902360062a4db33", "host"=>"cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu", "locale"=>"en-US", "session"=>"420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58", "shop"=>"peterfoo22.myshopify.com", "timestamp"=>"1679066674"}
+  [1m[36mShop Load (0.3ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  [1m[36mCACHE Shop Load (0.0ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 4)
+Completed 200 OK in 13ms (Views: 0.7ms | ActiveRecord: 2.5ms | Allocations: 4355)
+
+
+Started GET "/api/products/count" for 193.118.225.34 at 2023-03-17 16:24:41 +0100
+Cannot render console from 193.118.225.34! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ProductsController#count as */*
+  [1m[36mShop Load (0.1ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+Completed 200 OK in 623ms (Views: 2.6ms | ActiveRecord: 0.1ms | Allocations: 3286)
+
+
+[ ShopifyApp | INFO | Shop Not Found ] Installed store  - peterfoo22.myshopify.com deduced from user session
+Started GET "/api/products/create" for 193.118.225.34 at 2023-03-17 16:24:49 +0100
+Cannot render console from 193.118.225.34! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ProductsController#create as */*
+  [1m[36mShop Load (0.2ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+Completed 200 OK in 4761ms (Views: 2.6ms | ActiveRecord: 0.2ms | Allocations: 14035)
+
+
+[ ShopifyApp | INFO | Shop Not Found ] Installed store  - peterfoo22.myshopify.com deduced from user session
+Started GET "/api/products/count" for 193.118.225.34 at 2023-03-17 16:24:55 +0100
+Cannot render console from 193.118.225.34! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ProductsController#count as */*
+  [1m[36mShop Load (0.1ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+Completed 200 OK in 495ms (Views: 2.9ms | ActiveRecord: 0.1ms | Allocations: 3488)
+
+
+[ ShopifyApp | INFO | Shop Not Found ] Installed store  - peterfoo22.myshopify.com deduced from user session
+Started GET "/?embedded=1&hmac=6e74bd3a37497b3edaade10e40c3e6b01f286b7c6e77fb01a902360062a4db33&host=cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu&locale=en-US&session=420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58&shop=peterfoo22.myshopify.com&timestamp=1679066674" for 193.118.225.34 at 2023-03-17 16:36:53 +0100
+Cannot render console from 193.118.225.34! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  Parameters: {"embedded"=>"1", "hmac"=>"6e74bd3a37497b3edaade10e40c3e6b01f286b7c6e77fb01a902360062a4db33", "host"=>"cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu", "locale"=>"en-US", "session"=>"420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58", "shop"=>"peterfoo22.myshopify.com", "timestamp"=>"1679066674"}
+  [1m[36mShop Load (0.8ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  [1m[36mCACHE Shop Load (0.0ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 4)
+Completed 200 OK in 13ms (Views: 0.6ms | ActiveRecord: 1.2ms | Allocations: 4319)
+
+
+Started GET "/?embedded=1&hmac=1ef07129b7a00a2753a024c3d173293180c65520ca6d62ee804e90d150c903b0&host=cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu&locale=en-US&session=420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58&shop=peterfoo22.myshopify.com&timestamp=1679063986" for 193.118.225.34 at 2023-03-17 16:36:54 +0100
+Cannot render console from 193.118.225.34! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  Parameters: {"embedded"=>"1", "hmac"=>"1ef07129b7a00a2753a024c3d173293180c65520ca6d62ee804e90d150c903b0", "host"=>"cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu", "locale"=>"en-US", "session"=>"420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58", "shop"=>"peterfoo22.myshopify.com", "timestamp"=>"1679063986"}
+  [1m[36mShop Load (0.1ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  [1m[36mCACHE Shop Load (0.0ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 4)
+Completed 200 OK in 11ms (Views: 0.2ms | ActiveRecord: 0.1ms | Allocations: 4110)
+
+
+Started GET "/?embedded=1&hmac=af851fbea086dd0d05cbcf9b44aedceda40d1a792a685f8b85f9ece1938f95c5&host=cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu&locale=en-US&session=420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58&shop=peterfoo22.myshopify.com&timestamp=1679136428" for 31.61.239.245 at 2023-03-18 11:47:10 +0100
+Cannot render console from 31.61.239.245! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  Parameters: {"embedded"=>"1", "hmac"=>"af851fbea086dd0d05cbcf9b44aedceda40d1a792a685f8b85f9ece1938f95c5", "host"=>"cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu", "locale"=>"en-US", "session"=>"420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58", "shop"=>"peterfoo22.myshopify.com", "timestamp"=>"1679136428"}
+  [1m[36mShop Load (0.3ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  [1m[36mCACHE Shop Load (0.0ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 4)
+Completed 200 OK in 17ms (Views: 0.4ms | ActiveRecord: 2.7ms | Allocations: 4254)
+
+
+Started GET "/api/products/count" for 31.61.239.245 at 2023-03-18 11:47:21 +0100
+Cannot render console from 31.61.239.245! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ProductsController#count as */*
+  [1m[36mShop Load (0.1ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+Completed 200 OK in 418ms (Views: 2.2ms | ActiveRecord: 0.1ms | Allocations: 3286)
+
+
+[ ShopifyApp | INFO | Shop Not Found ] Installed store  - peterfoo22.myshopify.com deduced from user session
+Started GET "/?embedded=1&hmac=af851fbea086dd0d05cbcf9b44aedceda40d1a792a685f8b85f9ece1938f95c5&host=cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu&locale=en-US&session=420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58&shop=peterfoo22.myshopify.com&timestamp=1679136428" for 31.61.239.245 at 2023-03-18 11:55:03 +0100
+Cannot render console from 31.61.239.245! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  Parameters: {"embedded"=>"1", "hmac"=>"af851fbea086dd0d05cbcf9b44aedceda40d1a792a685f8b85f9ece1938f95c5", "host"=>"cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu", "locale"=>"en-US", "session"=>"420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58", "shop"=>"peterfoo22.myshopify.com", "timestamp"=>"1679136428"}
+  [1m[36mShop Load (0.5ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  [1m[36mCACHE Shop Load (0.0ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  Rendering text template
+  Rendered text template (Duration: 0.1ms | Allocations: 4)
+Completed 200 OK in 12ms (Views: 1.0ms | ActiveRecord: 1.1ms | Allocations: 4252)
+
+
+Started GET "/?shop=peterfoo22.myshopify.com&host=cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu" for 37.128.110.90 at 2023-03-19 11:49:36 +0100
+Cannot render console from 37.128.110.90! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#index as HTML
+  Parameters: {"shop"=>"peterfoo22.myshopify.com", "host"=>"cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu"}
+  [1m[36mShop Load (0.2ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  [1m[36mCACHE Shop Load (1.1ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+Redirected to https://peterfoo22.myshopify.com/admin/apps/5476b80e1eb663519354d7df814aa5a2
+Completed 302 Found in 509ms (ActiveRecord: 1.6ms | Allocations: 83279)
+
+
+Started GET "/?embedded=1&hmac=c9e7efb697dc489baeaf7bda563ad5b1b7ae991baa9a8b33f36c5d59082d95cc&host=cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu&locale=en-US&session=420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58&shop=peterfoo22.myshopify.com&timestamp=1679222981" for 37.128.110.90 at 2023-03-19 11:49:41 +0100
+Cannot render console from 37.128.110.90! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  Parameters: {"embedded"=>"1", "hmac"=>"c9e7efb697dc489baeaf7bda563ad5b1b7ae991baa9a8b33f36c5d59082d95cc", "host"=>"cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu", "locale"=>"en-US", "session"=>"420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58", "shop"=>"peterfoo22.myshopify.com", "timestamp"=>"1679222981"}
+  [1m[36mShop Load (0.1ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  [1m[36mCACHE Shop Load (0.0ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 13)
+Completed 200 OK in 6ms (Views: 2.6ms | ActiveRecord: 0.1ms | Allocations: 4980)
+
+
+Started GET "/?embedded=1&hmac=d0fdd4fbdca37ff23e58d3ca14c4f781b588b86b1c7e3318bbe8629ceb7ac8a4&host=cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu&locale=en-US&session=420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58&shop=peterfoo22.myshopify.com&timestamp=1679223181" for 37.128.110.90 at 2023-03-19 11:53:01 +0100
+Cannot render console from 37.128.110.90! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  Parameters: {"embedded"=>"1", "hmac"=>"d0fdd4fbdca37ff23e58d3ca14c4f781b588b86b1c7e3318bbe8629ceb7ac8a4", "host"=>"cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu", "locale"=>"en-US", "session"=>"420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58", "shop"=>"peterfoo22.myshopify.com", "timestamp"=>"1679223181"}
+  [1m[36mShop Load (0.2ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  [1m[36mCACHE Shop Load (0.0ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 6ms (Views: 0.5ms | ActiveRecord: 0.2ms | Allocations: 4287)
+
+
+Started GET "/?embedded=1&hmac=3dd653ba4741121809eef360a7431e9d42f12ae84d201b1edbbcd9d44a1e54fd&host=cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu&locale=en-US&session=420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58&shop=peterfoo22.myshopify.com&timestamp=1679223224" for 37.128.110.90 at 2023-03-19 11:53:44 +0100
+Cannot render console from 37.128.110.90! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  Parameters: {"embedded"=>"1", "hmac"=>"3dd653ba4741121809eef360a7431e9d42f12ae84d201b1edbbcd9d44a1e54fd", "host"=>"cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu", "locale"=>"en-US", "session"=>"420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58", "shop"=>"peterfoo22.myshopify.com", "timestamp"=>"1679223224"}
+  [1m[36mShop Load (0.2ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  [1m[36mCACHE Shop Load (0.0ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 38ms (Views: 0.5ms | ActiveRecord: 0.2ms | Allocations: 4124)
+
+
+Started GET "/?embedded=1&hmac=27265dd30c5e1f2d981d711b642b7aa2962c534060257564a71dec9fb869f68c&host=cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu&locale=en-US&session=420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58&shop=peterfoo22.myshopify.com&timestamp=1679223260" for 37.128.110.90 at 2023-03-19 11:54:21 +0100
+Cannot render console from 37.128.110.90! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  Parameters: {"embedded"=>"1", "hmac"=>"27265dd30c5e1f2d981d711b642b7aa2962c534060257564a71dec9fb869f68c", "host"=>"cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu", "locale"=>"en-US", "session"=>"420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58", "shop"=>"peterfoo22.myshopify.com", "timestamp"=>"1679223260"}
+  [1m[36mShop Load (2.2ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  [1m[36mCACHE Shop Load (0.0ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 10ms (Views: 0.2ms | ActiveRecord: 2.2ms | Allocations: 4124)
+
+
+Started GET "/?embedded=1&hmac=a053be067c039b8dd179cca2a6de434494f1044054e2f1045e46175001f4f644&host=cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu&locale=en-US&session=420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58&shop=peterfoo22.myshopify.com&timestamp=1679223329" for 37.128.110.90 at 2023-03-19 11:55:30 +0100
+Cannot render console from 37.128.110.90! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  Parameters: {"embedded"=>"1", "hmac"=>"a053be067c039b8dd179cca2a6de434494f1044054e2f1045e46175001f4f644", "host"=>"cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu", "locale"=>"en-US", "session"=>"420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58", "shop"=>"peterfoo22.myshopify.com", "timestamp"=>"1679223329"}
+  [1m[36mShop Load (0.1ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  [1m[36mCACHE Shop Load (0.0ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 7ms (Views: 0.4ms | ActiveRecord: 0.1ms | Allocations: 4110)
+
+
+Started GET "/?embedded=1&hmac=dc09297b30935ce7fb84c995797d94d138ea4caeb54c4e99a3303d2dca74fdef&host=cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu&locale=en-US&session=420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58&shop=peterfoo22.myshopify.com&timestamp=1679223349" for 37.128.110.90 at 2023-03-19 11:55:49 +0100
+Cannot render console from 37.128.110.90! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  Parameters: {"embedded"=>"1", "hmac"=>"dc09297b30935ce7fb84c995797d94d138ea4caeb54c4e99a3303d2dca74fdef", "host"=>"cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu", "locale"=>"en-US", "session"=>"420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58", "shop"=>"peterfoo22.myshopify.com", "timestamp"=>"1679223349"}
+  [1m[36mShop Load (0.2ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  [1m[36mCACHE Shop Load (0.0ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 4)
+Completed 200 OK in 7ms (Views: 0.5ms | ActiveRecord: 0.2ms | Allocations: 4108)
+
+
+Started GET "/api/products/count" for 37.128.110.90 at 2023-03-19 11:55:52 +0100
+Cannot render console from 37.128.110.90! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ProductsController#count as */*
+  [1m[36mShop Load (0.1ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+Completed 200 OK in 238ms (Views: 0.4ms | ActiveRecord: 0.1ms | Allocations: 12495)
+
+
+[ ShopifyApp | INFO | Shop Not Found ] Installed store  - peterfoo22.myshopify.com deduced from user session
+Started GET "/?embedded=1&hmac=2155d380dcbbac1af938debaa30666b970459bd9106af28955724d20c1975145&host=cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu&locale=en-US&session=420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58&shop=peterfoo22.myshopify.com&timestamp=1679223466" for 37.128.110.90 at 2023-03-19 11:57:46 +0100
+Cannot render console from 37.128.110.90! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  Parameters: {"embedded"=>"1", "hmac"=>"2155d380dcbbac1af938debaa30666b970459bd9106af28955724d20c1975145", "host"=>"cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu", "locale"=>"en-US", "session"=>"420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58", "shop"=>"peterfoo22.myshopify.com", "timestamp"=>"1679223466"}
+  [1m[36mShop Load (0.4ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  [1m[36mCACHE Shop Load (0.0ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 4)
+Completed 200 OK in 12ms (Views: 1.3ms | ActiveRecord: 0.4ms | Allocations: 4278)
+
+
+Started GET "/api/products/count" for 37.128.110.90 at 2023-03-19 11:57:49 +0100
+Cannot render console from 37.128.110.90! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ProductsController#count as */*
+  [1m[36mShop Load (0.1ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+Completed 200 OK in 222ms (Views: 0.3ms | ActiveRecord: 0.1ms | Allocations: 3399)
+
+
+[ ShopifyApp | INFO | Shop Not Found ] Installed store  - peterfoo22.myshopify.com deduced from user session
+Started GET "/?embedded=1&hmac=be17c1103672381d1f7d318d6535a86db630587e38b1f4ca106062008021911a&host=cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu&locale=en-US&session=420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58&shop=peterfoo22.myshopify.com&timestamp=1679223501" for 37.128.110.90 at 2023-03-19 11:58:22 +0100
+Cannot render console from 37.128.110.90! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  Parameters: {"embedded"=>"1", "hmac"=>"be17c1103672381d1f7d318d6535a86db630587e38b1f4ca106062008021911a", "host"=>"cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu", "locale"=>"en-US", "session"=>"420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58", "shop"=>"peterfoo22.myshopify.com", "timestamp"=>"1679223501"}
+  [1m[36mShop Load (0.1ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  [1m[36mCACHE Shop Load (0.0ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 4)
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 0.1ms | Allocations: 4109)
+
+
+Started GET "/api/products/count" for 37.128.110.90 at 2023-03-19 11:58:25 +0100
+Cannot render console from 37.128.110.90! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ProductsController#count as */*
+  [1m[36mShop Load (0.1ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+Completed 200 OK in 222ms (Views: 0.2ms | ActiveRecord: 0.1ms | Allocations: 3294)
+
+
+[ ShopifyApp | INFO | Shop Not Found ] Installed store  - peterfoo22.myshopify.com deduced from user session
+Started GET "/?embedded=1&hmac=3fdef173647a126ce0ea656a50ca8345fead3bceea3e2e50b6bee1f83dfccf9f&host=cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu&locale=en-US&session=420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58&shop=peterfoo22.myshopify.com&timestamp=1679223554" for 37.128.110.90 at 2023-03-19 11:59:15 +0100
+Cannot render console from 37.128.110.90! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  Parameters: {"embedded"=>"1", "hmac"=>"3fdef173647a126ce0ea656a50ca8345fead3bceea3e2e50b6bee1f83dfccf9f", "host"=>"cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu", "locale"=>"en-US", "session"=>"420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58", "shop"=>"peterfoo22.myshopify.com", "timestamp"=>"1679223554"}
+  [1m[36mShop Load (0.1ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  [1m[36mCACHE Shop Load (0.0ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 4)
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.1ms | Allocations: 4108)
+
+
+Started GET "/api/products/count" for 37.128.110.90 at 2023-03-19 11:59:18 +0100
+Cannot render console from 37.128.110.90! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ProductsController#count as */*
+  [1m[36mShop Load (0.1ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+Completed 200 OK in 269ms (Views: 0.2ms | ActiveRecord: 0.1ms | Allocations: 3292)
+
+
+[ ShopifyApp | INFO | Shop Not Found ] Installed store  - peterfoo22.myshopify.com deduced from user session
+Started GET "/?shop=peterfoo22.myshopify.com&host=cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu" for 37.128.110.90 at 2023-03-19 12:19:08 +0100
+Cannot render console from 37.128.110.90! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  Parameters: {"shop"=>"peterfoo22.myshopify.com", "host"=>"cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu"}
+  [1m[36mShop Load (0.8ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  [1m[36mCACHE Shop Load (1.1ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+Redirected to https://peterfoo22.myshopify.com/admin/apps/5476b80e1eb663519354d7df814aa5a2
+Completed 302 Found in 470ms (ActiveRecord: 2.4ms | Allocations: 5866)
+
+
+Started GET "/?embedded=1&hmac=730f37f220c0131457bf414749063ac3f33de29551ddc4ea009569233aaf03b9&host=cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu&locale=en-US&session=420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58&shop=peterfoo22.myshopify.com&timestamp=1679224750" for 37.128.110.90 at 2023-03-19 12:19:11 +0100
+Cannot render console from 37.128.110.90! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  Parameters: {"embedded"=>"1", "hmac"=>"730f37f220c0131457bf414749063ac3f33de29551ddc4ea009569233aaf03b9", "host"=>"cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu", "locale"=>"en-US", "session"=>"420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58", "shop"=>"peterfoo22.myshopify.com", "timestamp"=>"1679224750"}
+  [1m[36mShop Load (0.3ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  [1m[36mCACHE Shop Load (0.0ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 4)
+Completed 200 OK in 8ms (Views: 1.1ms | ActiveRecord: 0.3ms | Allocations: 4108)
+
+
+Started GET "/api/products/count" for 37.128.110.90 at 2023-03-19 12:19:14 +0100
+Cannot render console from 37.128.110.90! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ProductsController#count as */*
+  [1m[36mShop Load (0.1ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+Completed 200 OK in 218ms (Views: 0.7ms | ActiveRecord: 0.1ms | Allocations: 3293)
+
+
+[ ShopifyApp | INFO | Shop Not Found ] Installed store  - peterfoo22.myshopify.com deduced from user session
+Started GET "/?embedded=1&hmac=aaae9fcbace6c26c94fd5c19040f94d4499f7a1a1180038f0f938cb862f2baca&host=cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu&locale=en-US&session=420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58&shop=peterfoo22.myshopify.com&timestamp=1679225031" for 37.128.110.90 at 2023-03-19 12:23:51 +0100
+Cannot render console from 37.128.110.90! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  Parameters: {"embedded"=>"1", "hmac"=>"aaae9fcbace6c26c94fd5c19040f94d4499f7a1a1180038f0f938cb862f2baca", "host"=>"cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu", "locale"=>"en-US", "session"=>"420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58", "shop"=>"peterfoo22.myshopify.com", "timestamp"=>"1679225031"}
+  [1m[36mShop Load (0.3ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  [1m[36mCACHE Shop Load (0.0ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 4)
+Completed 200 OK in 6ms (Views: 0.6ms | ActiveRecord: 0.3ms | Allocations: 4108)
+
+
+Started GET "/api/products/count" for 37.128.110.90 at 2023-03-19 12:23:54 +0100
+Cannot render console from 37.128.110.90! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ProductsController#count as */*
+  [1m[36mShop Load (0.1ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+Completed 200 OK in 274ms (Views: 0.4ms | ActiveRecord: 0.1ms | Allocations: 3285)
+
+
+[ ShopifyApp | INFO | Shop Not Found ] Installed store  - peterfoo22.myshopify.com deduced from user session
+Started GET "/?embedded=1&hmac=84fd78b90bdcaf87146aef3bf5988ee4593279d1fd9bb6dc22d62f5d5ed7772f&host=cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu&locale=en-US&session=420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58&shop=peterfoo22.myshopify.com&timestamp=1679225172" for 37.128.110.90 at 2023-03-19 12:26:12 +0100
+Cannot render console from 37.128.110.90! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  Parameters: {"embedded"=>"1", "hmac"=>"84fd78b90bdcaf87146aef3bf5988ee4593279d1fd9bb6dc22d62f5d5ed7772f", "host"=>"cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu", "locale"=>"en-US", "session"=>"420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58", "shop"=>"peterfoo22.myshopify.com", "timestamp"=>"1679225172"}
+  [1m[36mShop Load (0.1ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  [1m[36mCACHE Shop Load (0.0ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 4)
+Completed 200 OK in 4ms (Views: 0.3ms | ActiveRecord: 0.2ms | Allocations: 4108)
+
+
+Started GET "/api/products/count" for 37.128.110.90 at 2023-03-19 12:26:15 +0100
+Cannot render console from 37.128.110.90! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ProductsController#count as */*
+  [1m[36mShop Load (0.1ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+Completed 200 OK in 242ms (Views: 0.3ms | ActiveRecord: 0.1ms | Allocations: 3285)
+
+
+[ ShopifyApp | INFO | Shop Not Found ] Installed store  - peterfoo22.myshopify.com deduced from user session
+Started GET "/?embedded=1&hmac=84fd78b90bdcaf87146aef3bf5988ee4593279d1fd9bb6dc22d62f5d5ed7772f&host=cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu&locale=en-US&session=420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58&shop=peterfoo22.myshopify.com&timestamp=1679225172" for 37.128.110.90 at 2023-03-19 12:36:23 +0100
+Cannot render console from 37.128.110.90! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  Parameters: {"embedded"=>"1", "hmac"=>"84fd78b90bdcaf87146aef3bf5988ee4593279d1fd9bb6dc22d62f5d5ed7772f", "host"=>"cGV0ZXJmb28yMi5teXNob3BpZnkuY29tL2FkbWlu", "locale"=>"en-US", "session"=>"420c10f9254bb2235d5ea246410526a8dda73fc0073e54b6f1eaffd9f7858f58", "shop"=>"peterfoo22.myshopify.com", "timestamp"=>"1679225172"}
+  [1m[36mShop Load (0.3ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  [1m[36mCACHE Shop Load (0.0ms)[0m  [1m[34mSELECT "shops".* FROM "shops" WHERE "shops"."shopify_domain" = ? LIMIT ?[0m  [["shopify_domain", "peterfoo22.myshopify.com"], ["LIMIT", 1]]
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 4)
+Completed 200 OK in 9ms (Views: 0.6ms | ActiveRecord: 0.6ms | Allocations: 4253)
+
+
